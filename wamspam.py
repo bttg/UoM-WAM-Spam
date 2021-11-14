@@ -79,17 +79,17 @@ NOTIFIER = MultiNotifier()
 print("Configuring chosen notification method(s)...")
 
 # option 0: student email notification, via SMTP
-from notify.by_email import SMTPGmailNotifier
+# from notify.by_email import SMTPGmailNotifier
 # the script will send email from and to your student email address
 # by default.
 # if you need to use an app-specific password to get around 2FA on
 # your email account, or other authentication issues, you can set it
 # here as the value of password.
-GMAIL_ADDRESS  = UNIMELB_USERNAME + "@student.unimelb.edu.au"
-GMAIL_PASSWORD = UNIMELB_PASSWORD # or app-specific password
-NOTIFIER.add_notifier(SMTPGmailNotifier(
-    address=GMAIL_ADDRESS,
-    password=GMAIL_PASSWORD)) 
+# GMAIL_ADDRESS  = UNIMELB_USERNAME + "@student.unimelb.edu.au"
+# GMAIL_PASSWORD = UNIMELB_PASSWORD # or app-specific password
+# NOTIFIER.add_notifier(SMTPGmailNotifier(
+#     address=GMAIL_ADDRESS,
+#     password=GMAIL_PASSWORD))
 
 # option 1: student email notification, via Gmail's API + OAuth
 # from notify.by_email_oauth import GmailAPINotifier
@@ -99,10 +99,10 @@ NOTIFIER.add_notifier(SMTPGmailNotifier(
 
 # option 2: wechat notification via ServerChan
 # uncomment below and configure to enable
-# from notify.by_wechat import ServerChanNotifier
-# SERVERCHAN_API_KEY = # put API key here, as a string (see README)
-# NOTIFIER.add_notifier(ServerChanNotifier(
-#    apikey=SERVERCHAN_API_KEY))
+from notify.by_wechat import ServerChanNotifier
+SERVERCHAN_API_KEY = "SCT94676T5QvPsebpTaBqQiHsxEZWXvEa"
+NOTIFIER.add_notifier(ServerChanNotifier(
+   apikey=SERVERCHAN_API_KEY))
 
 # option 3: telegram notification via a telegram bot
 # uncomment below and configure to enable

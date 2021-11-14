@@ -14,7 +14,7 @@ class ServerChanNotifier:
     """
     def __init__(self, apikey: str) -> None:
         print("Configuring Server Chan Notifier...")
-        self.api = f"https://sc.ftqq.com/{apikey}.send"
+        self.api = f"https://sctapi.ftqq.com/{apikey}.send"
 
     def notify(self, subject: str, text: str) -> None:
         print("Sending We Chat message...")
@@ -25,7 +25,8 @@ class ServerChanNotifier:
                 "desp": text
         }
         r = requests.get(self.api, params=data)
-        if r.json()["errno"] != 0:
+        result = r.json()["data"]
+        if r.json()["data"]["errno"] != 0:
             raise Exception(r.text)
         
         print("Sent!", r.text)
